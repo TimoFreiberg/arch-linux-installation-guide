@@ -146,12 +146,6 @@ Change the `HOOKS=(...)` line to something like
 
 `mkinitcpio -P`
 
-## root password
-
-`passwd`
-
-Enter your root password twice
-
 ## Boot loader/LUKS/LVM
 
 systemd-boot because why not and it works.
@@ -209,6 +203,10 @@ Enable a weekly trim (which is apparently superior to continuous trim: https://w
 See https://wiki.archlinux.org/index.php/Solid_state_drive#TRIM
 
 # Last steps
+
+`passwd`
+
+Enter your root password twice
 
 While the internet is available thanks to the arch installer, get your favorite packages now...
 
