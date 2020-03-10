@@ -2,7 +2,7 @@
 
 EFI/GPT, single partition, full disk encryption, "LUKS on a partition" (https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition)
 
-This is pretty much following the (Installation Guide)[https://wiki.archlinux.org/index.php/Installation_guide] with steps from (LUKS on a partition)[https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition] inserted at the right places.
+This is pretty much following the [Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) with steps from [LUKS on a partition](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LUKS_on_a_partition) inserted at the right places.
 
 It is a good idea to compare the steps from this guide with the steps on the pages linked above - the wiki might have been updated. When in doubt, the official wiki is right.
 
