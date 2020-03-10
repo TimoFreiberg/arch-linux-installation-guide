@@ -243,6 +243,7 @@ While the internet is available thanks to the arch installer, get your favorite 
 Add a pacman hook to run the `reflector` tool after the `pacman-mirrorlist` package is updated:
 
 `vim /etc/pacman.d/hooks/mirrorupgrade.hook`
+
 Add the following:
 ```
 [Trigger]
@@ -260,10 +261,13 @@ Exec = /bin/sh -c "reflector --country 'INSERT_COUNTRY_HERE' --latest 200 --age 
 Create a user
 
 `useradd -m -G wheel INSERT_NAME_HERE`
+
 `passwd INSERT_NAME_HERE`
 
 To be able to `sudo`:
+
 `visudo`
+
 Then navigate to the line saying something about `wheel` and uncomment the line that lets wheel members sudo properly
 
 # Booting into the new system
