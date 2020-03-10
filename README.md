@@ -10,13 +10,16 @@ Written on 2020-03-07
 
 # First steps
 
-*Are you booted in EFI mode?*
+Are you booted in EFI mode?
+
 `ls /sys/firmware/efi/efivars`
+
 If the directory exists and contains stuff, yes. If the directory doesn't exist, no.
 
 **This guide assumes that you're booted in EFI mode**
 
-*Update system clock*
+Update system clock
+
 `timedatectl set-ntp true`
 
 # Partition disks
