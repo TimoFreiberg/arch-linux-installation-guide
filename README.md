@@ -141,6 +141,7 @@ See https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Co
 `vim /etc/mkinitcpio.conf`
 
 Change the `HOOKS=(...)` line to something like
+
 `HOOKS=(base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck)`
 
 `mkinitcpio -P`
@@ -160,7 +161,9 @@ systemd-boot because why not and it works.
 `mkdir -p /etc/pacman.d/hooks/`
 
 `vim /etc/pacman.d/hooks/100-systemd-boot.hook`
+
 Add the following:
+
 ```
 [Trigger]
 Type = Package
@@ -173,11 +176,16 @@ When = PostTransaction
 Exec = /usr/bin/bootctl update
 ```
 
-Get the UUID of the LUKS partition (in this case `/dev/nvme0n1p2`) into your boot loader config via `lsblk -f | grep 'nvme0n1p2' | awk '{ print $4 }' >> /boot/loader/entries/arch.conf`
+Get the UUID of the LUKS partition (in this case `/dev/nvme0n1p2`) into your boot loader config via
+
+`lsblk -f | grep 'nvme0n1p2' | awk '{ print $4 }' >> /boot/loader/entries/arch.conf`
 
 Then add the following around the UUID:
+
 `vim /boot/loader/entries/arch.conf`
+
 Add the following: 
+
 ```
 title   Arch Linux
 linux   /vmlinuz-linux
@@ -187,14 +195,17 @@ options rd.luks.name=THE_UUID=cryptroot rd.luks.options=discard root=/dev/mapper
 ```
 
 *If you're not using an AMD CPU, replace the `amd-ucode.img` line*
+ 
 See https://wiki.archlinux.org/index.php/Microcode
 
 > The `rd.luks.options=discard` is required to enable the TRIM operation on SSDs, which is apparently good for SSD health and/or performance: https://wiki.archlinux.org/index.php/Solid_state_drive#TRIM
 
 Enable a weekly trim (which is apparently superior to continuous trim: https://wiki.archlinux.org/index.php/Solid_state_drive#Continuous_TRIM)
+
 `systemctl enable fstrim.timer`
 
 **Only use the discard option and enable the fstrim timer when your SSD supports TRIM!**
+
 See https://wiki.archlinux.org/index.php/Solid_state_drive#TRIM
 
 # Last steps
@@ -204,16 +215,27 @@ While the internet is available thanks to the arch installer, get your favorite 
 `pacman -Syu man base-devel vi git firefox gnome gnome-tweaks nextcloud-client keepassxc reflector libappindicator-gtk3`
 
 > Package choices:
+
 > man: why is this not in base-devel?
+
 > base-devel: I write software
+
 > vi: to make visudo work
+
 > git: I write software
+
 > firefox: The best browser right now if you want to try supporting Google less. Actually often better than Chrome
+
 > gnome: best desktop for me as of today.
+
 > gnome-tweaks: required for gnome to be customizable
+
 > nextcloud-client: synchronize my data
+
 > keepassxc: my password store
+
 > reflector: Keeps my pacman mirrorlist up to date (https://wiki.archlinux.org/index.php/Reflector)
+
 > libappindicator-gtk3: Required so app indicators of electron apps like slack are displayed. (The gnome extension `KStatusNotifierItem/-Appindicator Support` is a prerequisite for this - but my gnome config is documented in my nextcloud dir)
 
 `systemctl enable gdm NetworkManager`
