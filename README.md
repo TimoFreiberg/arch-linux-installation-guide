@@ -128,9 +128,9 @@ Choose a sensible hostname
 
 Add the following to `/etc/hosts`:
 
-`127.0.0.1	localhost
+```127.0.0.1	localhost
 ::1			localhost
-127.0.1.1	HOSTNAME.localdomain	HOSTNAME`
+127.0.1.1	HOSTNAME.localdomain	HOSTNAME```
 
 ## Going back to LVM settings: Configuring mkinitcpio
 
