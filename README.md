@@ -64,15 +64,17 @@ Now, the disk should contain no partitions.
 ## Encrypt the root partition
 
 > I chose plain LUKS based on the overview here: https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Overview
+
 > It's easy to set up and I don't need more than one partition.
-> Also, it was recommended to me by a colleague whose opinion I respect.
 
 `cryptsetup --use-random luksFormat /dev/nvme0n1p2` 
 
-*Choose an encryption password here and don't forget it. You can change passwords afterwards!*
+Choose an encryption password here and don't forget it. You can change passwords afterwards!
+
 See https://wiki.archlinux.org/index.php/Dm-crypt/Device_encryption#Cryptsetup_passphrases_and_keys
 
 `cryptsetup open /dev/nvme0n1p2 cryptroot`
+
 The encrypted container name can be chosen freely, it's `cryptroot` here.
 
 `mkfs.ext4 /dev/mapper/cryptroot`
