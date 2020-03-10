@@ -124,6 +124,7 @@ Uncomment locales you're gonna use
 `echo "KEYMAP=us" > /etc/vconsole.conf`
 
 `echo HOSTNAME > /etc/hostname`
+
 Choose a sensible hostname
 
 Add the following to `/etc/hosts`:
@@ -134,7 +135,7 @@ Add the following to `/etc/hosts`:
 127.0.1.1	HOSTNAME.localdomain	HOSTNAME
 ```
 
-## Going back to LVM settings: Configuring mkinitcpio
+## Going back to LUKS settings: Configuring mkinitcpio
 
 See https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Configuring_mkinitcpio_2
 
@@ -146,7 +147,7 @@ Change the `HOOKS=(...)` line to something like
 
 `mkinitcpio -P`
 
-## Boot loader/LUKS/LVM
+## Boot loader/LUKS
 
 systemd-boot because why not and it works.
 
@@ -204,9 +205,13 @@ See https://wiki.archlinux.org/index.php/Solid_state_drive#TRIM
 
 # Last steps
 
+### Root password
+ 
 `passwd`
 
 Enter your root password twice
+
+### Install essential packages
 
 While the internet is available thanks to the arch installer, get your favorite packages now...
 
@@ -238,6 +243,8 @@ While the internet is available thanks to the arch installer, get your favorite 
 
 `systemctl enable gdm NetworkManager`
 
+### Autoupdate pacman mirrorlist
+
 Add a pacman hook to run the `reflector` tool after the `pacman-mirrorlist` package is updated:
 
 `vim /etc/pacman.d/hooks/mirrorupgrade.hook`
@@ -256,13 +263,13 @@ Depends = reflector
 Exec = /bin/sh -c "reflector --country 'INSERT_COUNTRY_HERE' --latest 200 --age 24 --sort rate --save /etc/pacman.d/mirrorlist; rm -f /etc/pacman.d/mirrorlist.pacnew"
 ```
 
-Create a user
+### Creating users
 
 `useradd -m -G wheel INSERT_NAME_HERE`
 
 `passwd INSERT_NAME_HERE`
 
-To be able to `sudo`:
+### Enabling sudo for wheel users
 
 `visudo`
 
