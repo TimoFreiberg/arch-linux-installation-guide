@@ -25,19 +25,25 @@ Update system clock
 # Partition disks
 
 > I use a single root partition because it's the least work to set up.
+
 > I might use a HDD for old photos and videos on my home desktop, but I add that to /etc/fstab later on.
+
 > I don't use swap because I usually have enough RAM and I'm setting up a personal machine - I'd rather have my program OOM-killed than have my system swapping.
 
 Find your drive via `fdisk -l` or `lsblk`.
+
 In this guide, this will be `nvme0n1`
 
 ## Pre-wipe the disk
 
 If you had sensitive data on the disk or want to prefill it with random data that is indistinguishable from the encrypted filesystem contents.
+
 See https://wiki.archlinux.org/index.php/Dm-crypt/Drive_preparation#dm-crypt_specific_methods
 
 `cryptsetup open --type plain -d /dev/urandom /dev/nvme0n1 to_be_wiped`
+
 `dd if=/dev/zero of=/dev/mapper/to_be_wiped status=progress bs=1M`
+
 `cryptsetup close to_be_wiped`
 
 Now, the disk should contain no partitions.
@@ -47,13 +53,13 @@ Now, the disk should contain no partitions.
 `cfdisk /dev/nvme0n1` (use your drive path)
 
 * Delete every existing partition.
-** Should not be necessary if you pre-wiped the disk.
+    * Should not be necessary if you pre-wiped the disk.
 * Create one 260MiB partition from the start
-** Set its partition type to `EFI system partition`
-** In this guide, this will be `nvme0n1p1`
+    * Set its partition type to `EFI system partition`
+    * In this guide, this will be `nvme0n1p1`
 * Create one partition that spans the rest of the drive
-** Set its partition type to `Linux x86-64 root` 
-** In this guide, this will be `nvme0n1p2`
+    * Set its partition type to `Linux x86-64 root` 
+    * In this guide, this will be `nvme0n1p2`
 
 ## Encrypt the root partition
 
