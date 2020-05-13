@@ -109,6 +109,7 @@ Pretty much following https://wiki.archlinux.org/index.php/Installation_guide#In
 
 `pacman -Syu neovim fish amd-ucode`
 
+Only if you're using fish and want to alias vim to nvim:
 `abbr vim nvim`
 
 *If you're not using an AMD cpu, don't install `amd-ucode` but something for your CPU*
