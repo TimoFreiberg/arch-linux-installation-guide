@@ -55,7 +55,7 @@ Now, the disk should contain no partitions.
 * Delete every existing partition.
     * Should not be necessary if you pre-wiped the disk.
 * Create one 260MiB partition from the start
-    * Set its partition type to `EFI system partition`
+    * Set its partition type to `EFI system`
     * In this guide, this will be `nvme0n1p1`
 * Create one partition that spans the rest of the drive
     * Set its partition type to `Linux x86-64 root` 
@@ -216,7 +216,7 @@ Enter your root password twice
 
 While the internet is available thanks to the arch installer, get your favorite packages now...
 
-`pacman -Syu man base-devel vi git firefox gnome gnome-tweaks nextcloud-client keepassxc reflector libappindicator-gtk3`
+`pacman -Syu man base-devel vi git firefox gnome gnome-tweaks keepassxc reflector libappindicator-gtk3`
 
 > Package choices:
 
@@ -230,17 +230,15 @@ While the internet is available thanks to the arch installer, get your favorite 
 
 > firefox: The best browser right now if you want to try supporting Google less. Actually often better than Chrome
 
-> gnome: best desktop for me as of today.
-
-> gnome-tweaks: required for gnome to be customizable
-
-> nextcloud-client: synchronize my data
-
 > keepassxc: my password store
 
 > reflector: Keeps my pacman mirrorlist up to date (https://wiki.archlinux.org/index.php/Reflector)
 
 > libappindicator-gtk3: Required so app indicators of electron apps like slack are displayed. (The gnome extension `KStatusNotifierItem/-Appindicator Support` is a prerequisite for this - but my gnome config is documented in my nextcloud dir)
+
+> gnome: best desktop for me as of today.
+
+> gnome-tweaks: required for gnome to be customizable
 
 `systemctl enable gdm NetworkManager`
 
