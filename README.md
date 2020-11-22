@@ -240,7 +240,7 @@ While the internet is available thanks to the arch installer, get your favorite 
 
 > gnome-tweaks: required for gnome to be customizable
 
-`systemctl enable gdm NetworkManager`
+`systemctl enable gdm networkmanager`
 
 ### Autoupdate pacman mirrorlist
 
